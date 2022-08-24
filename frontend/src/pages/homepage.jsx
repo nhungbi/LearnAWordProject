@@ -10,7 +10,7 @@ import Container from 'react-bootstrap/Container';
 function HomePage({user} ) {
     const [history, setHistory] = useState([])
 
-    function get_history () {
+    function getHistory () {
         axios.get('get_user_history').then((response) => {
             // console.log(response.data.words)
             setHistory(response.data.words) // "word, audio, definition, pronounciation, speech, stems, date_learnd
@@ -18,7 +18,8 @@ function HomePage({user} ) {
     }
 
     useEffect( () => {
-        get_history()
+        console.log('get history')
+        getHistory()
     }, 
     [])
 

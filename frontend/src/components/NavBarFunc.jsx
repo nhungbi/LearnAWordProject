@@ -27,7 +27,7 @@ function NavBarFunc ({whoAmI}) {
             <Nav.Link onClick = {logOut}>Log out</Nav.Link>
             <Nav.Link href="/#/word">Learn a word</Nav.Link>
             <Nav.Link href="/#/leaderboard">Leaderboard</Nav.Link>
-            {/* <Nav.Link href="/#/userhistory">Words Learned</Nav.Link> */}
+            <Nav.Link href="/#/hangman">Hangman</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

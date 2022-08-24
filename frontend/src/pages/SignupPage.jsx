@@ -1,6 +1,9 @@
 import UserForm from "../components/UserForm"
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import {Mug, Folder} from 'react-kawaii'
+
+import {Container} from 'react-bootstrap'
 
 function SignUpPage() {
     let navigate = useNavigate();
@@ -51,10 +54,14 @@ function SignUpPage() {
 
 
     return (
-        <div>
-            <h1>Sign Up</h1>
-            <UserForm handleForm = {handleSignUp} signup = {true}/>
-        </div>
+        <Container fluid className ='signup-section'>
+            
+            <Folder className = 'folder' size={400} 
+            mood="excited" color="#FFD6FF" />
+            <h1 className="form-heading">Sign Up</h1>
+            <UserForm className = 'user-form' handleForm = {handleSignUp} signup = {true}/>
+            
+        </Container>
     )
 }
 

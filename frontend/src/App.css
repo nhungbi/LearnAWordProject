@@ -8,7 +8,8 @@
 /* .word-section {
 } */
 .word {
-  color: rgb(94, 100, 114);
+  /* color: rgb(94, 100, 114); */
+  color: rgb(79, 81, 101);
   font-weight: bolder;
   text-align: center;
 
@@ -33,17 +34,18 @@
   top:1vh;
   left: 0;
   right: 0;
-  background-color: rgb(209, 221, 252);
+  /* background-color: rgb(209, 221, 252); */
+  background-color: rgb(214, 226, 255);
 
   
 }
 
 .wrong-char {
-  color: red
+  color: rgb(231, 198, 255)
 }
 
 .correct-char {
-  color: green
+  color: rgb(200, 182, 255)
 }
 
 .audio-summary {
@@ -52,3 +54,31 @@
   width: 200px;
 
 }
+
+.leaderboard {
+  width: 80vw;
+  font-size: 2vw;
+}
+
+.folder {
+  display: flex;
+  /* position: relative; */
+  align-items: center;
+}
+.signup-section {
+  position: relative;
+}
+.form-heading {
+  position: absolute;
+  top: 20px;
+  left:40px;
+
+}
+.user-form {
+  position: absolute;
+  top: 70px;
+  left: 50px;
+}
+
+
+
