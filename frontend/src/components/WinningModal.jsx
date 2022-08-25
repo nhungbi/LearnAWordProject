@@ -1,14 +1,17 @@
+
+
 import Modal from 'react-bootstrap/Modal';
 
 import WordCard from '../components/WordCard';
 
 import {Button} from 'react-bootstrap'
-function LosingModal ({puzzle}) {
+
+function WinningModal ({puzzle}) {
 
     return (
     <Modal show = {true}>
         <Modal.Header>
-        <Modal.Title>You Lost! <Button variant="light" onClick = {()=> document.location.reload()}>Restart?</Button> </Modal.Title>
+        <Modal.Title>You won! <Button variant="light" onClick = {()=> document.location.reload()}>Restart?</Button> </Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <WordCard word = {puzzle}/>
@@ -20,4 +23,4 @@ function LosingModal ({puzzle}) {
     )
 }
 
-export default LosingModal
+export default WinningModal

@@ -10,6 +10,8 @@ import TypeCuppy from '../components/TypeCuppy'
 
 import {Container} from 'react-bootstrap'
 import LosingModal from '../components/LosingModal'
+import HintModal from '../components/HintModal'
+import WinningModal from '../components/WinningModal'
 
 function Hangman () {
 
@@ -76,14 +78,7 @@ function Hangman () {
 
     return (
         <div>
-              {
-        (puzzle && checkVictory() ) ? 
-        <div> 
-           <h1>Gratz! You won! The word was {puzzle.word}. </h1>
-           <button onClick={() => window.location.reload()}> Click to restart the game!</button>
-         </div>
-
-         :
+        {
          puzzle &&
 
          <Container fluid>
@@ -93,6 +88,7 @@ function Hangman () {
           <h3> Number of wrong guesses left: {6- wrongGuesses.length}</h3> 
 
           <HangmanRules />
+          <HintModal word = {puzzle} />
           <hr></hr>
    
           <DisplayPuzzle puzzle = {puzzle} lettersGuessed = {lettersGuessed}/>
@@ -105,6 +101,10 @@ function Hangman () {
 
       wrongGuesses.length >= 6 && <LosingModal puzzle = {puzzle}/>
 
+      }
+
+      {
+        puzzle && checkVictory() && <WinningModal puzzle = {puzzle} />
       }
 
 

@@ -27,7 +27,7 @@ function NavBarFunc ({whoAmI, user}) {
             <Nav className="me-auto">
               <Nav.Link href="/#/word">Learn a word</Nav.Link>
               <Nav.Link href="/#/leaderboard">Leaderboard</Nav.Link>
-              <Nav.Link href="/#/hangman">Hangman</Nav.Link> 
+              <Nav.Link href="/#/hangman">Cuppy</Nav.Link> 
               <Nav.Link onClick = {logOut}> Log out</Nav.Link>
             </Nav> 
             :

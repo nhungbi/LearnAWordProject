@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 function WordCard({word}) {
   return (
     <Card className="text-center word-cards">
-      <Card.Header className = 'card-header'>Stems: {word.stems.map((stem, index)=> {
+      <Card.Header className = 'card-header'> {word.word} - {word.stems.map((stem, index)=> {
             if (index === word.stems.length -1) {
                 return <span>{stem}</span>
             }

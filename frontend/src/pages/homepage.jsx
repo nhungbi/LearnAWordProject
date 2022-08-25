@@ -29,7 +29,6 @@ function HomePage({user} ) {
     }, 
     [])
 
-
     return (
 
         <Container fluid className = 'start-below'>
@@ -38,7 +37,7 @@ function HomePage({user} ) {
                 user ? 
                 history &&
                 <Container fluid>
-                    <WelcomeType user = {user} />
+                    <WelcomeType user = {user} number = {history.length}/>
                 <hr></hr>
                 <Row>
           
