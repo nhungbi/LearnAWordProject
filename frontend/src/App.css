@@ -139,3 +139,9 @@
   border: none;
   background-color: #FFF6FF;;
 }
+
+.leader-heading {
+  background-color:#CDBDFF;
+  border: #E8E0FF;
+  color: white;
+}

@@ -28,7 +28,7 @@ function LeaderBoardPage () {
             
             <ListGroup as= 'ol'>
 
-            <ListGroup.Item as="li" active>
+            <ListGroup.Item as="li" className= 'leader-heading'>
                 <Row>
                     <Col xs = {2} sm = {2} md={2} lg = {2}>Rank:</Col>
                     <Col xs = {7} sm = {7} md={7} lg = {7}>User</Col>

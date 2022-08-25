@@ -7,7 +7,13 @@ import { useNavigate } from "react-router-dom";
 import {Container} from 'react-bootstrap'
 
 import {Folder} from 'react-kawaii'
+
+import {useState} from 'react'
+import LoginErrorModal from "../components/LoginErrorModal";
+
 function LoginPage({whoAmI, user}) {
+
+    const [error, setError] = useState('')
 
     let navigate = useNavigate();
 
@@ -18,8 +24,12 @@ function LoginPage({whoAmI, user}) {
             password: event.target.password.value})
         .then((response)=>{
             console.log('response from server: ', response)
+            if (response.data.success) {
             navigate('/')
-            window.location.reload()
+            window.location.reload() } 
+            else {
+                setError(response.data.error)
+            }
         })
       }
 
@@ -35,6 +45,8 @@ function LoginPage({whoAmI, user}) {
         <h1 className="form-heading">Login</h1>
         <UserForm  className = 'user-form' handleForm={submitLoginForm} signup = {false}/>
         </Container>}
+        
+        {error && <LoginErrorModal error = {error} setError = {setError}/>}
         </div>
     )
 }

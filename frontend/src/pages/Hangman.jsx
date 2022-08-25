@@ -18,7 +18,7 @@ function Hangman () {
     const [puzzle, setPuzzle] = useState('')
     const [lettersGuessed, setLettersGuessed] = useState([])
 
-    const [availableLetters, setAvailableLetters] = useState(["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"])
+    const [availableLetters, setAvailableLetters] = useState(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"])
 
     function getPuzzle () {
         axios.get('get_user_history').then((response) => {
@@ -46,7 +46,7 @@ function Hangman () {
           return  //end the function
         }
     
-        const userGuess = event.target.value.toLowerCase()
+        const userGuess = event.target.value
     
         if (userGuess === '') {
           alert('Please input a guess!')
@@ -58,7 +58,7 @@ function Hangman () {
         const letters = [...lettersGuessed, userGuess]
 
         setLettersGuessed(letters)
-        setAvailableLetters(availableLetters.filter(letter=> letter != event.target.value)) //remove the guess
+        setAvailableLetters(availableLetters.filter(letter=> letter != userGuess)) //remove the guess
     
       }
     
@@ -79,7 +79,11 @@ function Hangman () {
     return (
         <div>
         {
-         puzzle &&
+         !puzzle ?  
+         
+         <h1>You must learn at least 1 word to play Cuppy!</h1>
+
+         :
 
          <Container fluid>
           <TypeCuppy />

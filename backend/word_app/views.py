@@ -49,16 +49,17 @@ def log_in(request):
                 # access the base request, not the DRF request
                 # this starts a login session for this user
                 login(request._request, user)
+                return JsonResponse({'success': True})
             except Exception as e:
                 print('except')
                 print(str(e))
-            return HttpResponse('success!')
+                return JsonResponse({'success': False, 'error': e})
             # Redirect to a success page.
         else:
-            return HttpResponse('not active!')
+            return JsonResponse({'success': False, 'error': 'Account not active!'})
             # Return a 'disabled account' error message
     else:
-        return HttpResponse('no user!')
+        return JsonResponse({'success': False, 'error': 'Account not registered!'})
         # Return an 'invalid login' error message.
 
 
