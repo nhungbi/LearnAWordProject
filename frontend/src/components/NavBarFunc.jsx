@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/esm/Button';
 import axios from 'axios'
 
-function NavBarFunc ({whoAmI}) {
+function NavBarFunc ({whoAmI, user}) {
 
   const logOut = function(){
     console.log('logout')
@@ -18,17 +18,25 @@ function NavBarFunc ({whoAmI}) {
 
     return (
 
-        <Navbar variant="light">
+        <Navbar variant="light" fixed = 'top' className = 'navbarr'>
         <Container className = 'navbarr'>
           <Navbar.Brand href="/">Home</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/#/signup">Sign Up</Nav.Link>
-            <Nav.Link href="/#/login">Login</Nav.Link>
-            <Nav.Link onClick = {logOut}>Log out</Nav.Link>
-            <Nav.Link href="/#/word">Learn a word</Nav.Link>
-            <Nav.Link href="/#/leaderboard">Leaderboard</Nav.Link>
-            <Nav.Link href="/#/hangman">Hangman</Nav.Link>
-          </Nav>
+
+          {
+            user ? 
+            <Nav className="me-auto">
+              <Nav.Link href="/#/word">Learn a word</Nav.Link>
+              <Nav.Link href="/#/leaderboard">Leaderboard</Nav.Link>
+              <Nav.Link href="/#/hangman">Hangman</Nav.Link> 
+              <Nav.Link onClick = {logOut}> Log out</Nav.Link>
+            </Nav> 
+            :
+            <Nav className="me-auto">
+              <Nav.Link href="/#/signup">Sign Up</Nav.Link>
+              <Nav.Link href="/#/login">Login</Nav.Link>
+              
+            </Nav>
+          }
         </Container>
       </Navbar>
     )

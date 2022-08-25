@@ -24,7 +24,7 @@ function LeaderBoardPage () {
 
     console.log(ranking, 'rasafds')
     return (
-        <Container fluid className = 'leaderboard'>
+        <Container fluid className = 'leaderboard start-below'>
             
             <ListGroup as= 'ol'>
 
@@ -42,7 +42,7 @@ function LeaderBoardPage () {
             {ranking && ranking.map((user, index) =>{
                 return <ListGroup.Item as="li">
                      <Row>
-                    <Col xs = {2} sm = {2} md={2} lg = {2}>{index+1}:</Col>
+                    <Col xs = {2} sm = {2} md={2} lg = {2}>{index+1}.</Col>
                     <Col xs = {7} sm = {7} md={7} lg = {7}>{user.user}</Col>
                     <Col xs = {3} sm = {3} md={3} lg = {3}>{user.words}</Col>
                     </Row>

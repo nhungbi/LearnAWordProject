@@ -8,6 +8,7 @@ import WordAudio from '../components/WordAudio'
 import Container from 'react-bootstrap/Container';
 
 
+
 function WordPage () {
 
     const [word, setWord] = useState(null)
@@ -27,7 +28,7 @@ function WordPage () {
 
 
     return (
-        <Container fluid>
+        <Container fluid className='section-marg'>
             {word ? 
             <div>
                 <DisplayWord word = {word.word} stems = {word.stems}/>

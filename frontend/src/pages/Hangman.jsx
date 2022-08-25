@@ -4,11 +4,19 @@ import UserGuess from '../components/UserGuess.jsx'
 import DisplayGuesses from '../components/DisplayGuesses'
 
 import axios from 'axios'
+import HangmanStage from '../components/HangmanStage'
+import HangmanRules from '../components/HangmanRules'
+import TypeCuppy from '../components/TypeCuppy'
+
+import {Container} from 'react-bootstrap'
+import LosingModal from '../components/LosingModal'
 
 function Hangman () {
 
     const [puzzle, setPuzzle] = useState('')
     const [lettersGuessed, setLettersGuessed] = useState([])
+
+    const [availableLetters, setAvailableLetters] = useState(["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"])
 
     function getPuzzle () {
         axios.get('get_user_history').then((response) => {
@@ -27,13 +35,16 @@ function Hangman () {
 
     const submitGuess = (event) => {
         event.preventDefault() //don't want the page to refresh
+
+        console.log(event.target.value, 'heree')
+
     
         if (wrongGuesses.length >=6) {
           alert(`You have lost the game! The word was ${puzzle.word}.`)
           return  //end the function
         }
     
-        const userGuess = document.getElementById('user-guess').value.toLowerCase() //in case the user input a capitalize letter
+        const userGuess = event.target.value.toLowerCase()
     
         if (userGuess === '') {
           alert('Please input a guess!')
@@ -43,9 +54,9 @@ function Hangman () {
           return //end the function
         }
         const letters = [...lettersGuessed, userGuess]
-        // lettersGuessed.push(userGuessed) don't do that because you are directly altering the state
+
         setLettersGuessed(letters)
-        document.getElementById('user-guess').value = ''
+        setAvailableLetters(availableLetters.filter(letter=> letter != event.target.value)) //remove the guess
     
       }
     
@@ -67,24 +78,33 @@ function Hangman () {
         <div>
               {
         (puzzle && checkVictory() ) ? 
-        // display this part if checkVictory() and puzzle != "" are true
         <div> 
            <h1>Gratz! You won! The word was {puzzle.word}. </h1>
            <button onClick={() => window.location.reload()}> Click to restart the game!</button>
          </div>
 
          :
-         // display this part if either checkVictory() and puzzle != "" are false
          puzzle &&
 
-         <div>
-            <h1> Hangman App</h1>
-             <hr></hr>
+         <Container fluid>
+          <TypeCuppy />
+          <HangmanStage stage = {wrongGuesses.length} />
+
+          <h3> Number of wrong guesses left: {6- wrongGuesses.length}</h3> 
+
+          <HangmanRules />
+          <hr></hr>
    
-        <DisplayPuzzle puzzle = {puzzle} lettersGuessed = {lettersGuessed}/>
-          <UserGuess submitGuess={submitGuess}/>
+          <DisplayPuzzle puzzle = {puzzle} lettersGuessed = {lettersGuessed}/>
+          <UserGuess availableLetters = {availableLetters} submitGuess={submitGuess}/>
           <DisplayGuesses wrongGuesses = {wrongGuesses}/>
-          </div>
+          </Container>
+      }
+
+      {// losing screen
+
+      wrongGuesses.length >= 6 && <LosingModal puzzle = {puzzle}/>
+
       }
 
 

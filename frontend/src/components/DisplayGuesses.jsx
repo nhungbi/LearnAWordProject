@@ -1,4 +1,6 @@
 
+import { ListGroupItem } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
 function DisplayGuesses (props) {
@@ -9,13 +11,15 @@ function DisplayGuesses (props) {
         <div>
             { wrongGuesses.length != 0 &&
             <div>
-            <h2> Wrong Guesses: </h2>
+            <ListGroup horizontal>
+            <ListGroupItem className = 'wrong-guesses'> Wrong Guesses: </ListGroupItem>
             {
-                //mapping each element in wrongGuesses to have <h3> </h3> tag
             wrongGuesses.map((letter, index) => {
-                return <h3 key = {index}> {index+1} : {letter} </h3>
+                return  <ListGroup.Item className = 'wrong-guesses'> {index+1}. {letter}</ListGroup.Item>
             })
             }
+            </ListGroup>
+
             </div> }
         </div>
     )

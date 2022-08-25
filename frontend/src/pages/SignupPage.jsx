@@ -54,9 +54,9 @@ function SignUpPage() {
 
 
     return (
-        <Container fluid className ='signup-section'>
+        <Container fluid className ='relative-section'>
             
-            <Folder className = 'folder' size={400} 
+            <Folder size={400} 
             mood="excited" color="#FFD6FF" />
             <h1 className="form-heading">Sign Up</h1>
             <UserForm className = 'user-form' handleForm = {handleSignUp} signup = {true}/>

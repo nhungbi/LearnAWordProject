@@ -1,7 +1,7 @@
 
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin:  2vw auto;
   /* padding: 1rem; */
   /* text-align: center; */
 }
@@ -30,10 +30,10 @@
 .navbarr {
   display: flex;
   border: 1px solid rgb(223, 231, 253);
-  position: fixed;
-  top:1vh;
-  left: 0;
-  right: 0;
+  /* position: relative; */
+  /* top:1vh; */
+  /* left: 0; */
+  /* right: 0; */
   /* background-color: rgb(209, 221, 252); */
   background-color: rgb(214, 226, 255);
 
@@ -60,12 +60,8 @@
   font-size: 2vw;
 }
 
-.folder {
-  display: flex;
-  /* position: relative; */
-  align-items: center;
-}
-.signup-section {
+
+.relative-section {
   position: relative;
 }
 .form-heading {
@@ -81,4 +77,60 @@
 }
 
 
+.home-heading {
+  position: absolute;
+  top: 30px;
+  left: 25px;
+  font-size: 18px;
+  color: rgb(79, 81, 101);
+}
 
+.home2-heading {
+  position: absolute;
+  top: 60px;
+  left: 25px;
+  font-size: 18px;
+  color: rgb(79, 81, 101);
+}
+
+.start-below {
+  margin-top: 70px;
+}
+
+.home-cards {
+  margin-bottom: 5px;
+}
+
+.word-cards {
+  background-color: #C6D8FF;
+  border: outset #BBD0FF;
+}
+
+.card-header {
+  background-color: #BBD0FF;
+}
+
+.section-marg {
+  padding: 2rem;
+  border: solid #0E0E52;
+}
+
+.cuppies {
+  padding: 1rem;
+}
+
+.rules-button {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
+.letters-button {
+  margin: 1px;
+  color:#FF93FF;
+
+}
+
+.wrong-guesses {
+  border: none;
+  background-color: #FFF6FF;;
+}

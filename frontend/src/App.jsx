@@ -11,7 +11,7 @@ import axios from 'axios'
 import NavBarFunc from './components/NavBarFunc'
 import WordPage from './pages/WordPage'
 import LeaderBoardPage from './pages/LeaderBoardPage'
-import UserHistory from './pages/UserHistory';
+
 import {Planet} from 'react-kawaii';
 import Icon from './components/test';
 import Hangman from './pages/Hangman';
@@ -59,7 +59,7 @@ function App() {
        {/* <Planet size={200} mood="blissful" color="#FDA7DC" /> */}
         {/* <Icon/> */}
       <HashRouter>
-        <NavBarFunc whoAmI={whoAmI}/>
+        <NavBarFunc whoAmI={whoAmI} user = {user}/>
         <Routes>
           <Route path = '' element = {<HomePage user = {user} whoAmI={whoAmI} /> }/>
           <Route path = 'signup' element = {<SignUpPage/>}/>

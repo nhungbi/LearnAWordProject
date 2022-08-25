@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-print(os.environ['apikey'], 'heree')
+# print(os.environ['apikey'], 'heree')
 
 
 def index(request):
