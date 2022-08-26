@@ -6,6 +6,7 @@ import HandleDefinition from '../components/HandleDefinition'
 import WordAudio from '../components/WordAudio'
 
 import Container from 'react-bootstrap/Container';
+import { TypeAnimation } from 'react-type-animation';
 
 
 
@@ -16,7 +17,6 @@ function WordPage () {
     function get_word () {
 
         axios.get('get_word').then((response) => {
-            console.log(response.data)
             setWord(response.data) //an object with word, audio, definition, pronounciation, speech, and stems as keys
 
         })
@@ -28,7 +28,7 @@ function WordPage () {
 
 
     return (
-        <Container fluid className='section-marg'>
+        <Container fluid className='section-marg start-below'>
             {word ? 
             <div>
                 <DisplayWord word = {word.word} stems = {word.stems}/>
@@ -36,7 +36,15 @@ function WordPage () {
                 <HandleDefinition wordObject = {word} speech = {word.speech} definition={word.definition}/> 
              </div> 
             
-            : <h1>Loading....</h1>}
+            : 
+
+            <TypeAnimation
+                sequence={['Loading...', 5000]}
+                style={{ fontSize: '3em' }}
+                wrapper="h1"
+                repeat={Infinity} // Repeat this Animation Sequence infinitely
+            /> }
+            
 
             
 

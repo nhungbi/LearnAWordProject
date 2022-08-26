@@ -37,7 +37,8 @@ function HomePage({user} ) {
                 user ? 
                 history &&
                 <Container fluid>
-                    <WelcomeType user = {user} number = {history.length}/>
+                    <h3>Total Learned: {history.length} </h3>
+                    <WelcomeType user = {user}/>
                 <hr></hr>
                 <Row>
           

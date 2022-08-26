@@ -1,8 +1,9 @@
+from sqlite3 import IntegrityError
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 from .models import AppUser, Word, Stem
-
+from django.db.utils import IntegrityError
 from django.core import serializers
 import requests
 
@@ -15,7 +16,6 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-# print(os.environ['apikey'], 'heree')
 
 
 def index(request):
@@ -30,10 +30,10 @@ def signup(request):
         password = request.data['password']
 
         AppUser.objects.create_user(username=request.data['username'], password=password, email=email)
-        return JsonResponse({'data': 'user was added'})
+        return JsonResponse({'success': True, 'data': 'user was added'})
 
-    except Exception as e:
-        return JsonResponse({'data': e})
+    except IntegrityError as e:
+        return JsonResponse({'success': False, 'data': 'Username or email has already been taken.'})
     
 
 @api_view(['POST'])
@@ -53,13 +53,13 @@ def log_in(request):
             except Exception as e:
                 print('except')
                 print(str(e))
-                return JsonResponse({'success': False, 'error': e})
+                return JsonResponse({'success': False, 'error': str(e)})
             # Redirect to a success page.
         else:
             return JsonResponse({'success': False, 'error': 'Account not active!'})
             # Return a 'disabled account' error message
     else:
-        return JsonResponse({'success': False, 'error': 'Account not registered!'})
+        return JsonResponse({'success': False, 'error': 'Account not found! Email or password is wrong.'})
         # Return an 'invalid login' error message.
 
 
@@ -74,7 +74,7 @@ def who_am_i(request):
     # Make sure that you don't send sensitive information to the client, such as password hashes
     # raise Exception('oops')
     if request.user.is_authenticated:
-        data = serializers.serialize("json", [request.user], fields=['email', 'username'])
+        data = serializers.serialize("json", [request.user], fields=['email', 'username', 'avatar_color', 'avatar_mood'])
         return HttpResponse(data)
     else:
         return JsonResponse({'user':None})
@@ -94,53 +94,51 @@ def get_data(word):
     """
     Given a word, return a dictionary with information about the word.
     """
-    # data_response = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={os.environ['apikey']}")
+    data_response = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={os.environ['apikey']}")
 
-    # info = data_response.json()
-    # print(info, 'inrrroooooffoofo')
+    info = data_response.json()
 
-    # speech = info[0]['fl'] #part of speech
-    # definition = info[0]['shortdef'][0] 
+    speech = info[0]['fl'] #part of speech
+    definition = info[0]['shortdef'][0] 
 
-    # if ' ' not in definition: #ex: word: fissionable - def is fissile
-    #     print(definition, 'redododoododoo')
-    #     return get_data(definition) 
+    if ' ' not in definition: #ex: word: fissionable - def is fissile
+        return get_data(definition) 
     
     # "https://media.merriam-webster.com/audio/prons/[language_code]/[country_code]/[format]/[subdirectory]/[base filename].[format]"
-    # pronounciation = info[0]['hwi']['hw']
-    # audio = info[0]['hwi']['prs'][0]['sound']['audio']
-    # word = info[0]['meta']['id'] #in case random word is of different stem
-    # stems = info[0]['meta']['stems']
+    pronounciation = info[0]['hwi']['hw']
+    audio = info[0]['hwi']['prs'][0]['sound']['audio']
+    word = info[0]['meta']['id'] #in case random word is of different stem
+    stems = info[0]['meta']['stems']
 
-    # subdirectory = get_subdirectory(audio)
+    subdirectory = get_subdirectory(audio)
 
-    # audio_pronounce =f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdirectory}/{audio}.mp3"
+    audio_pronounce =f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdirectory}/{audio}.mp3"
 
-    # return {'word': word,
-    # 'definition': definition,
-    # 'speech': speech,
-    # 'pronounciation': pronounciation,
-    # 'audio': audio_pronounce,
-    # 'stems': stems}
+    return {'word': word,
+    'definition': definition,
+    'speech': speech,
+    'pronounciation': pronounciation,
+    'audio': audio_pronounce,
+    'stems': stems}
 
     #test
-    return {'word': "coyotillo",
-    'definition': "a shrub (Karwinskia humboldtiana) of the buckthorn family of the southwestern U.S. and Mexico having poisonous berries",
-    'speech': "noun",
-    'pronounciation': "coy*o*til*lo",
-    'audio': "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/coyoti01.mp3",
-    'stems': ['coyotillo', 'coyotillos']}
+    # return {'word': "coyotillo",
+    # 'definition': "a shrub (Karwinskia humboldtiana) of the buckthorn family of the southwestern U.S. and Mexico having poisonous berries",
+    # 'speech': "noun",
+    # 'pronounciation': "coy*o*til*lo",
+    # 'audio': "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/coyoti01.mp3",
+    # 'stems': ['coyotillo', 'coyotillos']}
 
 @api_view(['GET'])
 def get_word(request):
 
-    # word_response = requests.get( "https://random-word-api.herokuapp.com/word")
-    # word = word_response.json()[0] #got the word
+    word_response = requests.get( "https://random-word-api.herokuapp.com/word")
+    word = word_response.json()[0] #got the word
 
     # print('worddddd', word)
 
     try: #in case random word don't have valid data
-        info = get_data("word")
+        info = get_data(word)
         return JsonResponse(info)
     except:
         print('-----------------error')
@@ -156,16 +154,13 @@ def save_word(request):
     for stem in info['stems']:
         Stem(text = stem, word = word).save()
 
-    # print(word.user.all(), 'userrrrr')
-    # print(word.stems.all(), 'stemmmmm')
-
     return HttpResponse("WORD SAVED SUCCESSFULLY!")
 
 @api_view(['GET'])
 def get_leaderboard(request):
     ranking_list = sorted(list(AppUser.objects.all()), key = lambda user: len(user.words.all()), reverse=True) #descending
     
-    data = [{'user': user.username, 'words': len(user.words.all())} for user in ranking_list[:10]]
+    data = [{'user': user.username, 'words': len(user.words.all()), 'avatar_color': user.avatar_color, 'avatar_mood': user.avatar_mood} for user in ranking_list[:10]]
     
     return JsonResponse({'ranking': data})
 
@@ -193,8 +188,39 @@ def get_user_history(request):
     except Exception as e:
         return HttpResponse(e)
 
+@api_view(['GET'])
+def get_avatar(request):
+    return JsonResponse({'avatar_color': request.user.avatar_color, 'avatar_mood': request.user.avatar_mood})
 
-def get_word_db(request, word):
-    pass
+@api_view(['PUT'])
+def save_avatar(request):
+    request.user.avatar_color = request.data['avatar_color']
+    request.user.avatar_mood = request.data['avatar_mood']
+    request.user.save()
+    return HttpResponse('Successfully saved!')
+    
+@api_view(['PUT'])
+def edit_profile(request):
+    user = request.user
+    #if '' then blank
+    try: 
+        if request.data['email']:
+            user.email = request.data['email']
+        
+        if request.data['username']:
+            user.username = request.data['username']
+        
+        if request.data['password']:
+            user.set_password(request.data['password'])
+    
+        user.save()
+        return JsonResponse({'success': True})
+    except IntegrityError as e:
+        return JsonResponse({'success': False, 'data': 'Username or email has already been taken.'})
+    except Exception as e:
+
+        print (e)
+        return JsonResponse({'success': False, 'error': str(e)})
+
 
 

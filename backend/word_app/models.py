@@ -15,6 +15,9 @@ class AppUser(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = [] # Email & Password are required by default.
 
+    avatar_color = models.CharField(max_length = 7, default= '#FFFFFF')
+    avatar_mood = models.CharField(max_length = 50, default= 'happy')
+
 class Word(models.Model):
     user = models.ManyToManyField(AppUser, related_name= 'words')
     word = models.CharField(max_length = 225)

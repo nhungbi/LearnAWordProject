@@ -145,3 +145,30 @@
   border: #E8E0FF;
   color: white;
 }
+
+.col-avatar {
+  position: relative;
+  width: 300px;
+}
+
+.form-section {
+  position: absolute;
+  width: 250px;
+  top: 80px;
+}
+.avatar-section {
+  background-color: rgb(228, 234, 250);
+  width: 600px;
+  height: 430px;
+  border-radius: 30px;
+  border: outset   #f6ebff;
+
+}
+.profile-button {
+  position: absolute;
+  bottom: 0px;
+  right: 2px;
+  background-color: #E7C6FF;
+  border: outset  #E7C6FF;
+
+}

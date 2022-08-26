@@ -12,6 +12,9 @@ urlpatterns = [
     path('save_word', views.save_word),
     path('get_leaderboard', views.get_leaderboard),
     path('get_user_history', views.get_user_history),
-    path('get_word_db/<str:word>', views.get_word_db)
+    # path('get_word_db/<str:word>', views.get_word_db),
+    path('save_avatar', views.save_avatar),
+    path('get_avatar', views.get_avatar),
+    path('edit_profile', views.edit_profile),
 
 ]

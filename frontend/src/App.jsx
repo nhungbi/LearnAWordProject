@@ -15,6 +15,7 @@ import LeaderBoardPage from './pages/LeaderBoardPage'
 import {Planet} from 'react-kawaii';
 import Icon from './components/test';
 import Hangman from './pages/Hangman';
+import AvatarPage from './pages/AvatarPage';
 
 
 const getCSRFToken = ()=>{
@@ -56,8 +57,7 @@ function App() {
 
   return (
     <div className="App">
-       {/* <Planet size={200} mood="blissful" color="#FDA7DC" /> */}
-        {/* <Icon/> */}
+
       <HashRouter>
         <NavBarFunc whoAmI={whoAmI} user = {user}/>
         <Routes>
@@ -67,6 +67,7 @@ function App() {
           <Route path = 'word' element = {<WordPage/>} />
           <Route path = 'leaderboard' element ={ <LeaderBoardPage/>} />
           <Route path = 'hangman' element = {<Hangman/>} />
+          <Route path = 'avatar' element = {<AvatarPage  user= {user}/>} />
         </Routes>
       </HashRouter>
     </div>

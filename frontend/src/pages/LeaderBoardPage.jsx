@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import {Col, Row} from 'react-bootstrap'
 
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Backpack } from 'react-kawaii';
 
 function LeaderBoardPage () {
 
@@ -30,23 +31,26 @@ function LeaderBoardPage () {
 
             <ListGroup.Item as="li" className= 'leader-heading'>
                 <Row>
-                    <Col xs = {2} sm = {2} md={2} lg = {2}>Rank:</Col>
-                    <Col xs = {7} sm = {7} md={7} lg = {7}>User</Col>
-                    <Col xs = {3} sm = {3} md={3} lg = {3}>Words</Col>
-                    {/* <Col>Ranks</Col>
-                    <Col>User Name</Col>
-                    <Col>Words</Col> */}
+                    <Col xs = {2} >Rank:</Col>
+                    <Col xs = {3} >Avatar</Col>
+                    <Col xs = {4} >User</Col>
+                    <Col xs = {3} >Words</Col>
                 </Row>
         </ListGroup.Item>
 
             {ranking && ranking.map((user, index) =>{
                 return <ListGroup.Item as="li">
-                     <Row>
-                    <Col xs = {2} sm = {2} md={2} lg = {2}>{index+1}.</Col>
-                    <Col xs = {7} sm = {7} md={7} lg = {7}>{user.user}</Col>
-                    <Col xs = {3} sm = {3} md={3} lg = {3}>{user.words}</Col>
+                    <Row>
+                    <Col xs = {2}>{index+1}.</Col>
+                    <Col xs = {3} >
+                         <Backpack size={50} mood= {user.avatar_mood} color={user.avatar_color} /> 
+                    </Col>
+                    <Col xs = {4} > 
+                    {user.user}
+                    </Col>
+                    <Col xs = {3} >{user.words}</Col>
                     </Row>
-                    {/* {index+1}: {user.user} - {user.words}  */}
+
                     </ListGroup.Item>
             })}
             </ListGroup>

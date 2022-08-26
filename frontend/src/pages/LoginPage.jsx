@@ -9,7 +9,7 @@ import {Container} from 'react-bootstrap'
 import {Folder} from 'react-kawaii'
 
 import {useState} from 'react'
-import LoginErrorModal from "../components/LoginErrorModal";
+import ErrorModal from "../components/ErrorModal";
 
 function LoginPage({whoAmI, user}) {
 
@@ -46,7 +46,7 @@ function LoginPage({whoAmI, user}) {
         <UserForm  className = 'user-form' handleForm={submitLoginForm} signup = {false}/>
         </Container>}
         
-        {error && <LoginErrorModal error = {error} setError = {setError}/>}
+        {error && <ErrorModal error = {error} setError = {setError}/>}
         </div>
     )
 }

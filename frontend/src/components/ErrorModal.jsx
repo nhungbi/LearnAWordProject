@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import {useState} from 'react'
 
 
-function LoginErrorModal ({error, setError}) {
+function ErrorModal ({error, setError}) {
     const [show, setShow] = useState(true);
 
 
@@ -13,7 +13,7 @@ function LoginErrorModal ({error, setError}) {
 
          <Modal show={show} onHide={()=> {setError('')}}> 
         <Modal.Header closeButton>
-          <Modal.Title>Login Error</Modal.Title>
+          <Modal.Title>Error</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             {error}
@@ -33,4 +33,4 @@ function LoginErrorModal ({error, setError}) {
 
 }
 
-export default LoginErrorModal
+export default ErrorModal
