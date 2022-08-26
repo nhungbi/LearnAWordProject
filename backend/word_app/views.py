@@ -107,7 +107,8 @@ def get_data(word):
     # "https://media.merriam-webster.com/audio/prons/[language_code]/[country_code]/[format]/[subdirectory]/[base filename].[format]"
     pronounciation = info[0]['hwi']['hw']
     audio = info[0]['hwi']['prs'][0]['sound']['audio']
-    word = info[0]['meta']['id'] #in case random word is of different stem
+    # info[0]['meta']['id'] #in case random word is of different stem, #remove all nonletters
+    word = re.sub('[^a-zA-Z]+', '', info[0]['meta']['id'])
     stems = info[0]['meta']['stems']
 
     subdirectory = get_subdirectory(audio)
@@ -121,15 +122,6 @@ def get_data(word):
     'audio': audio_pronounce,
     'stems': stems}
 
-    #test
-    # return {'word': "coyotillo",
-    # 'definition': "a shrub (Karwinskia humboldtiana) of the buckthorn family of the southwestern U.S. and Mexico having poisonous berries",
-    # 'speech': "noun",
-    # 'pronounciation': "coy*o*til*lo",
-    # 'audio': "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/coyoti01.mp3",
-    # 'stems': ['coyotillo', 'coyotillos']}
-
-@api_view(['GET'])
 def get_word(request):
 
     word_response = requests.get( "https://random-word-api.herokuapp.com/word")
