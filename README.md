@@ -1,5 +1,5 @@
 
-# AWordADayKeepsTheTeacherAway
+# Learn a Word Project
 
   A simple website that allows users to learn random words by retyping the definition. In addition, a side game named "Cuppy" (inspired by Hangman) is used to grab a random word that the user has learned to review.
 
