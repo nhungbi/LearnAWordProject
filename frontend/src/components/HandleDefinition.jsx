@@ -4,10 +4,11 @@ import {useState} from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import { useEffect } from 'react';
+import DefinitionModal from './DefinitionModal';
 function HandleDefinition ({wordObject, speech, definition}) {
 
 
-    const [message, setMessage] = useState('You must type the definition correctly in order to save the word in your account!')
+    const [message, setMessage] = useState('')
 
     const [userDef, setUserDef] = useState('')
 
@@ -27,7 +28,7 @@ function HandleDefinition ({wordObject, speech, definition}) {
             console.log(response)
             
         })} else(
-        alert('You must type the definition correctly in order to save the word in your account!'))
+        setMessage('You must type the definition correctly in order to save the word in your account!'))
     }
 
     function checkDef (event) {
@@ -56,7 +57,7 @@ function HandleDefinition ({wordObject, speech, definition}) {
 
     function preventPasting (event) {
         event.preventDefault()
-        alert('Hey! No Cheating!')
+        setMessage('Hey! No Cheating!')
         
     }
 
@@ -74,13 +75,15 @@ function HandleDefinition ({wordObject, speech, definition}) {
                     onPaste= {preventPasting}
                 />
                 <Form.Text muted>
-                    {message}
+                'You must type the definition correctly in order to save the word in your account!'
                     <p> {displayDef} </p>
                 </Form.Text>
                 <br></br>
 
                 <Button type = 'submit' variant="outline-secondary"> save word</Button>
             </Form>
+
+            {message && <DefinitionModal message = {message} setMessage = {setMessage} />}
         </div>
     )
 }
