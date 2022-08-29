@@ -26,7 +26,7 @@
 
 https://user-images.githubusercontent.com/105992987/187283422-51b39b85-725e-4f46-9040-08f3945c2d0b.mov
 
-  - The homepage would display all the words the use has learned.
+  - The homepage would display all the words they have learned.
 
 
 https://user-images.githubusercontent.com/105992987/187284309-6a282db5-d2b4-4605-9069-ff5b86c0411c.mov
@@ -39,18 +39,15 @@ https://user-images.githubusercontent.com/105992987/187284712-2220d4f5-4cc5-4a70
 
 https://user-images.githubusercontent.com/105992987/187286259-c71e4d76-6d48-4295-9639-4fb9adc6a28d.mp4
 
-  - Randomly grab a word for the user to learn. Disable pasting and check if user type in the definition correctly.
+  - Randomly grab a word for the user to learn. Disable pasting and check if the user types in the definition correctly.
 
 https://user-images.githubusercontent.com/105992987/187287949-00713546-82b7-4889-a7f0-977474e2c770.mp4
 
-  - Randomly grab a word that the user has learned before. Each wrong guesses will progress to a different cup.
+  - Randomly grab a word that the user has learned before. Each wrong guess will progress to a different cup.
   
 https://user-images.githubusercontent.com/105992987/187289479-e82b77c1-b428-4bfa-8145-7ee569035ba0.mp4
 
   - Responsive
-
-
-
 
 
 
