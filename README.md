@@ -20,7 +20,7 @@
 
   - Not logged in:
     - <img width="600" alt="Screen Shot 2022-08-29 at 1 43 37 PM" src="https://user-images.githubusercontent.com/105992987/187275264-497944a2-7d49-4dd5-aa8d-9ed863e0aee5.png">
-    - <img width="450" alt="Screen Shot 2022-08-29 at 1 44 05 PM" src="https://user-images.githubusercontent.com/105992987/187275274-cee9aee2-c4b2-44ea-bd97-438b554b20c4.png">   <img width="450" alt="Screen Shot 2022-08-29 at 1 50 50 PM" src="https://user-images.githubusercontent.com/105992987/187276182-53f2d670-7fc1-478c-a112-cd8acf38cbfc.png">
+    - <img width="430" alt="Screen Shot 2022-08-29 at 1 44 05 PM" src="https://user-images.githubusercontent.com/105992987/187275274-cee9aee2-c4b2-44ea-bd97-438b554b20c4.png">   <img width="430" alt="Screen Shot 2022-08-29 at 1 50 50 PM" src="https://user-images.githubusercontent.com/105992987/187276182-53f2d670-7fc1-478c-a112-cd8acf38cbfc.png">
 
  - Logged in:
 
@@ -45,7 +45,7 @@ https://user-images.githubusercontent.com/105992987/187287949-00713546-82b7-4889
 
   - Randomly grab a word that the user has learned before. Each wrong guesses will progress to a different cup.
   
-https://user-images.githubusercontent.com/105992987/187288974-a8a5c6a8-8380-40a3-bc6b-fe1103ad51df.mp4
+https://user-images.githubusercontent.com/105992987/187289479-e82b77c1-b428-4bfa-8145-7ee569035ba0.mp4
 
   - Responsive
 
