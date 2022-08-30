@@ -10,9 +10,9 @@
   - Get definition, part of speech, pronunciation (audio and written), and stems: https://www.dictionaryapi.com/
 
 
-# Frameworks Used
+# Frameworks/Libraries Used
 
-  - Frontend: React
+  - Frontend: React, Bootstrap, React Kawaii
   - Backend: Django
   - Database: PostgreSQL
 
